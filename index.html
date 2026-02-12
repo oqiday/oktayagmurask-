@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oktay ❤️ Yağmur</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#1e3c72,#ff758c);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.hero{
+    min-height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+}
+
+h1{
+    font-size:3.5rem;
+    margin-bottom:10px;
+}
+
+h2{
+    margin-bottom:30px;
+    font-weight:400;
+}
+
+.counter-box{
+    background:rgba(255,255,255,0.15);
+    padding:25px 40px;
+    border-radius:20px;
+    font-size:1.5rem;
+    margin-bottom:50px;
+    backdrop-filter:blur(10px);
+}
+
+.content{
+    max-width:800px;
+    line-height:1.8;
+    font-size:1.1rem;
+}
+
+button{
+    margin-top:40px;
+    padding:14px 30px;
+    border:none;
+    border-radius:30px;
+    font-size:1rem;
+    background:white;
+    color:#1e3c72;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ffcc00;
+    transform:scale(1.05);
+}
+
+/* Kalpler */
+.heart{
+    position:fixed;
+    font-size:22px;
+    animation:floatUp 6s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(100vh);opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<h1>Yağmur 💖</h1>
+<h2>Sevgililer Günümüz Kutlu Olsun</h2>
+
+<div class="counter-box">
+    <div>Tanışalı 💞</div>
+    <div id="liveTime"></div>
+</div>
+
+<div class="content">
+    Seni sevmek bazen çok kolay,<br>
+    bazen de kalbimin kapasitesini zorluyor.<br><br>
+
+    Gülüşün… moralimin sıfır olduğu anlarda bile reset atıyor.<br><br>
+
+    Yanımdayken huzur,<br>
+    uzaktayken özlem oluyorsun.<br><br>
+
+    Ve en güzeli; 8 Ağustos 12:30’dan beri<br>
+    her şey biraz daha anlamlı.<br><br>
+
+    Sen benim en güzel “iyi ki”msin.<br><br>
+
+    Her şeye rağmen değil…<br>
+    her şeyle birlikte yine seni seçerim.<br><br>
+
+    💛💙
+</div>
+
+<button onclick="secret()">Gizli Mesaj 💌</button>
+
+</section>
+
+<script>
+// CANLI SAYAÇ
+const startDate = new Date(2025, 7, 8, 12, 30, 0);
+
+function updateCounter(){
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff/(1000*60*60*24));
+    const hours = Math.floor((diff/(1000*60*60))%24);
+    const minutes = Math.floor((diff/(1000*60))%60);
+    const seconds = Math.floor((diff/1000)%60);
+
+    document.getElementById("liveTime").innerHTML =
+        days+" Gün "+
+        hours+" Saat "+
+        minutes+" Dakika "+
+        seconds+" Saniye 💛💙";
+}
+
+setInterval(updateCounter,1000);
+updateCounter();
+
+// GİZLİ MESAJ
+function secret(){
+    alert("8 Ağustos 12:30… Hayatımın en güzel başlangıcı. Seninle bir ömür istiyorum 💍💛💙");
+}
+
+// SÜZÜLEN SARILACİVERT KALPLER
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+
+    const hearts=["💛","💙"];
+    heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+4)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove();},6000);
+}
+
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
