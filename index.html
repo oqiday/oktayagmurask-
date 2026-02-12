@@ -3,171 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oktay ❤️ Yağmur</title>
+<title>Yağmur 💛</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(135deg,#1e3c72,#ff758c);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
+margin:0;
+padding:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#0b1f3a,#001a33);
+color:white;
+text-align:center;
+overflow:hidden;
 }
 
-.hero{
-    min-height:100vh;
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
+.loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#001a33;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+z-index:999;
 }
 
-h1{
-    font-size:3.5rem;
-    margin-bottom:10px;
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+display:none;
 }
 
-h2{
-    margin-bottom:30px;
-    font-weight:400;
+h1{font-size:42px;margin-bottom:10px;}
+
+.heart{
+font-size:60px;
+animation:beat 1s infinite;
 }
 
-.counter-box{
-    background:rgba(255,255,255,0.15);
-    padding:25px 40px;
-    border-radius:20px;
-    font-size:1.5rem;
-    margin-bottom:50px;
-    backdrop-filter:blur(10px);
+@keyframes beat{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
 }
 
-.content{
-    max-width:800px;
-    line-height:1.8;
-    font-size:1.1rem;
+#counter{
+font-size:22px;
+margin:20px 0 5px 0;
+}
+
+.sub{
+font-size:16px;
+opacity:0.8;
+margin-bottom:20px;
 }
 
 button{
-    margin-top:40px;
-    padding:14px 30px;
-    border:none;
-    border-radius:30px;
-    font-size:1rem;
-    background:white;
-    color:#1e3c72;
-    cursor:pointer;
-    transition:0.3s;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#f1c40f;
+color:#001a33;
+cursor:pointer;
 }
 
-button:hover{
-    background:#ffcc00;
-    transform:scale(1.05);
+.hidden{
+display:none;
+margin-top:20px;
+font-size:20px;
 }
 
-/* Kalpler */
-.heart{
-    position:fixed;
-    font-size:22px;
-    animation:floatUp 6s linear infinite;
-    pointer-events:none;
+.stars{
+position:absolute;
+width:100%;
+height:100%;
+background:url('https://www.transparenttextures.com/patterns/stardust.png');
+opacity:0.3;
 }
 
-@keyframes floatUp{
-    0%{transform:translateY(100vh);opacity:1;}
-    100%{transform:translateY(-10vh);opacity:0;}
+.falling{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+opacity:0;
+}
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<div class="loader">Yağmur için hazırlanıyor... 💛</div>
 
-<h1>Yağmur 💖</h1>
-<h2>Sevgililer Günümüz Kutlu Olsun</h2>
+<div class="stars"></div>
 
-<div class="counter-box">
-    <div>Tanışalı 💞</div>
-    <div id="liveTime"></div>
+<div class="container">
+<h1>Yağmur 💛</h1>
+<div class="heart">💛💙</div>
+
+<p>8 Ağustos 12:30'dan beri hayatımın en güzel hikayesi yazılıyor.</p>
+
+<div id="counter"></div>
+<div class="sub">Ve her saniye sana biraz daha aşık oluyorum.</div>
+
+<button onclick="showMessage()">Gizli Mesajı Aç 💌</button>
+
+<div id="secret" class="hidden">
+Yağmur…  
+Sen gelmeden önce hayat normaldi.  
+Şimdi premium sürüm oldu 😌  
+
+İyi ki varsın.  
+İyi ki 8 Ağustos'ta hayatıma düştün.  
+Ve hâlâ ilk günkü gibi heyecanlıyım 💛
 </div>
-
-<div class="content">
-    Seni sevmek bazen çok kolay,<br>
-    bazen de kalbimin kapasitesini zorluyor.<br><br>
-
-    Gülüşün… moralimin sıfır olduğu anlarda bile reset atıyor.<br><br>
-
-    Yanımdayken huzur,<br>
-    uzaktayken özlem oluyorsun.<br><br>
-
-    Ve en güzeli; 8 Ağustos 12:30’dan beri<br>
-    her şey biraz daha anlamlı.<br><br>
-
-    Sen benim en güzel “iyi ki”msin.<br><br>
-
-    Her şeye rağmen değil…<br>
-    her şeyle birlikte yine seni seçerim.<br><br>
-
-    💛💙
 </div>
-
-<button onclick="secret()">Gizli Mesaj 💌</button>
-
-</section>
 
 <script>
-// CANLI SAYAÇ
-const startDate = new Date(2025, 7, 8, 12, 30, 0);
+const startDate=new Date("2024-08-08T12:30:00");
 
 function updateCounter(){
-    const now = new Date();
-    const diff = now - startDate;
+const now=new Date();
+const diff=now-startDate;
 
-    const days = Math.floor(diff/(1000*60*60*24));
-    const hours = Math.floor((diff/(1000*60*60))%24);
-    const minutes = Math.floor((diff/(1000*60))%60);
-    const seconds = Math.floor((diff/1000)%60);
+const days=Math.floor(diff/(1000*60*60*24));
+const hours=Math.floor((diff/(1000*60*60))%24);
+const minutes=Math.floor((diff/(1000*60))%60);
+const seconds=Math.floor((diff/1000)%60);
 
-    document.getElementById("liveTime").innerHTML =
-        days+" Gün "+
-        hours+" Saat "+
-        minutes+" Dakika "+
-        seconds+" Saniye 💛💙";
+document.getElementById("counter").innerHTML=
+days+" gün "+
+hours+" saat "+
+minutes+" dakika "+
+seconds+" saniyedir beraberiz 💛";
 }
-
 setInterval(updateCounter,1000);
-updateCounter();
 
-// GİZLİ MESAJ
-function secret(){
-    alert("8 Ağustos 12:30… Hayatımın en güzel başlangıcı. Seninle bir ömür istiyorum 💍💛💙");
+function showMessage(){
+document.getElementById("secret").style.display="block";
+createHearts();
 }
 
-// SÜZÜLEN SARILACİVERT KALPLER
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-
-    const hearts=["💛","💙"];
-    heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
-
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(Math.random()*3+4)+"s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{heart.remove();},6000);
+function createHearts(){
+for(let i=0;i<20;i++){
+let heart=document.createElement("div");
+heart.className="falling";
+heart.innerHTML=Math.random()>0.5?"💛":"💙";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
+}
 }
 
-setInterval(createHeart,400);
+window.onload=function(){
+setTimeout(()=>{
+document.querySelector(".loader").style.display="none";
+document.querySelector(".container").style.display="block";
+},2000);
+}
 </script>
 
 </body>
